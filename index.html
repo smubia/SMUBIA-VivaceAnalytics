@@ -100,17 +100,23 @@
 
 
 
-        <div class="col-md-12" style="margin-bottom:35px;height: 22vh;">
+        <div class="col-md-12" style="margin-top:30px;height: 45vh;">
 
             <div class="col-md-6" style="height: 100%;">
-                <div class="card-contents">
+                <div class="panel-contents">
                     <div class="card-title">
                         <span class="title">Gender Breakdown</span>
                     </div>
 
-                    <div class="card-body">
-                        <div class="col-md-6">Female<br>7</div>
-                        <div class="col-md-6">Male<br>6</div>
+                    <div class="card-body col-md-12">
+                        <div class="col-md-4 col-md-push-2" style="text-align:center;">
+                            <img src="img/male.png" class="img-responsive" />
+                            <span style="color:white;font-size:3em" id="gender-male">5</span>
+                        </div>
+                        <div class="col-md-4 col-md-push-2" style="text-align:center;">
+                            <img src="img/female.png" class="img-responsive" />
+                            <span style="color:white;font-size:3em" id="gender-female">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,18 +126,19 @@
                     <span class="title">Expertise of Signups</span>
 
                     <div class="card-body">
-                        <div id="chartContainer" style="height: 150px; width: 100%;"></div>
+                        <div id="expertChart" style="height: 100%; width: 100%;"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12" style="height: 22vh">
+        <div class="col-md-12" style="margin-top:30px;height: 17vh; margin-bottom: 100px;">
 
             <div class="col-md-6" style="height: 100%;">
                 <div class="panel-contents">
                     <span class="title">Year of Signups</span>
                     <div class="card-body">
+                        <div id="yearChart" style="height: 100%; width: 100%;"></div>
                     </div>
                 </div>
             </div>

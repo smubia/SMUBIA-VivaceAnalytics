@@ -33,15 +33,8 @@ $(document).ready(function () {
     retrieveData();
 })
 
-expertisePopulate = function (obj) {
+function expertisePopulate() {
     var options = {
-        title: {
-            text: "Column Chart using jQuery Plugin"
-        },
-        legend: {
-            verticalAlign: "bottom",
-            horizontalAlign: "center"
-        },
         backgroundColor: "transparent",
         data: [
             {
@@ -49,23 +42,23 @@ expertisePopulate = function (obj) {
                 showInLegend: true,
                 dataPoints: [
                     {
-                        y: 3,
+                        y: expertiseNewbie,
                         label: "Newbie"
                 },
                     {
-                        y: 3,
+                        y: expertiseBeginner,
                         label: "Beginner"
                 },
                     {
-                        y: 2,
+                        y: expertiseIntermediate,
                         label: "Intermediate"
                 },
                     {
-                        y: 3,
+                        y: expertiseAdvanced,
                         label: "Advanced"
                 },
                     {
-                        y: 4,
+                        y: expertiseExpert,
                         label: "Expert"
                 }
                 ]
@@ -73,7 +66,43 @@ expertisePopulate = function (obj) {
         ]
     };
 
-    $("#chartContainer").CanvasJSChart(options);
+    $("#expertChart").CanvasJSChart(options);
+}
+
+function yearPopulate() {
+
+    var chart = new CanvasJS.Chart("yearChart", {
+        backgroundColor: "transparent",
+        data: [
+            {
+                type: "doughnut",
+                indexLabel: "{label} #percent%",
+                dataPoints: [
+                    {
+                        y: year2013,
+                        label: "2013"
+                    },
+                    {
+                        y: year2014,
+                        label: "2014"
+                    },
+                    {
+                        y: year2015,
+                        label: "2015"
+                    },
+                    {
+                        y: year2016,
+                        label: "2016"
+                    },
+                    {
+                        y: year2017,
+                        label: "2017"
+                    }
+			]
+		}
+		]
+    });
+    chart.render();
 }
 
 
@@ -92,16 +121,16 @@ function retrieveData() {
 
             }
             printAll();
-            //genderPopulate();
+            genderPopulate();
             schoolPopulate();
-            //yearPopulate();
-            //expertisePopulate();
+            yearPopulate();
+            expertisePopulate();
         }
     });
 }
 
 function genderSwitch(gender) {
-    if (gender == 'female') {
+    if (gender == 'Female') {
         genderGirl++;
     } else {
         genderBoy++;
@@ -191,6 +220,11 @@ function schoolPopulate() {
 
     $("#school-total").text(schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS);
     //$("#school-percent").text(schoolSOSS);
+}
+
+function genderPopulate() {
+    $("#gender-female").text(genderGirl);
+    $("#gender-male").text(genderBoy);
 }
 
 function printAll() {
