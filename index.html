@@ -7,149 +7,63 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon1.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon1.ico" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/main.css">
-
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-
 </head>
 
-<!-- TODO
-1. When changing option, it would change the visualisation as well
-2. When changing date, it would change the visualisation as well
-3. When clicking on a table, it sort accordingly.
-4. When hovering on the heatmap, it should bring up a list of trolleys as well
-5. When hovering the heatmap, it should show those that needs changing
-6. When clicking on the heatmap, it can change the values in the table.
-7. Clicking again would reset the table.
-8. When hovering on the heatmap, it should show the time and which exit was triggered. 
-9. When hovering on the heatmap, it should be possible to show which trolley is missing.
-10. There should be a table to show everyone the list of actions that needs to be taken and the time stamp
-
-
--->
 <body>
-    <div class="container" style="margin-top:50px">
+    <div class="container" style="margin-top:40px;width: 1700px;">
         <div class="col-md-12">
-            <div class="col-md-7">
-                <span class="title">Trolley Dashboard for &nbsp;</span>
-                <select type="text" class="form-control" style="width: 50% !important; font-size: 1.5em; height: 45px;">
-                    <option selected="selected">Jurong Point</option>
-                    <option>Somerset 313</option>
-                    <option>Plaza Singapura</option>
-                    <option>Clementi Mall</option>
-                    <option>Nex Mall</option>
-                </select>
+            <div class="col-md-6">
+                <span class="title" style="font-size:3em">SMUBIA Vivace Sign-up Live Monitoring</span>
             </div>
-            <div class="col-md-5">
-                <span class="title">Date: &nbsp;</span>
-                <input class="datepicker form-control" data-date-format="dd-M-yy" style="height: 45px; width: 50%; font-size: 1.5em;">
-            </div>
-        </div>
-        <div class="col-md-12" id="heatMap">
-
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <span class="title">Trolley Battery Overview</span>
-                <div class="table-responsive" style="overflow-x: hidden; overflow-y: scroll; height: 420px; float:left;">
-                    <table class="table" style="font-size: 1.5em;">
-                        <thead>
-                            <tr>
-                                <th class="col-md-4">
-                                    Cart ID &nbsp; <i class="fa fa-caret-up" aria-hidden="true" style="display: none;"></i><i class="fa fa-caret-down" aria-hidden="true" style="display: none;"></i>
-                                </th>
-                                <th class="col-md-4">
-                                    Loc &nbsp; <i class="fa fa-caret-up" aria-hidden="true" style="display: none;"></i><i class="fa fa-caret-down" aria-hidden="true" style="display: none;"></i>
-                                </th>
-                                <th class="col-md-4">
-                                    Batt % &nbsp; <i class="fa fa-caret-up" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true" style="display: none;"></i>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="danger">
-                                <td>06</td>
-                                <td>Point 2</td>
-                                <td>15 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr class="warning">
-                                <td>11</td>
-                                <td>Point 2</td>
-                                <td>35 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>25</td>
-                                <td>Point 2</td>
-                                <td>66 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>26</td>
-                                <td>Point 1</td>
-                                <td>70 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>27</td>
-                                <td>Point 1</td>
-                                <td>80 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>28</td>
-                                <td>Point 2</td>
-                                <td>88 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>29</td>
-                                <td>Point 3</td>
-                                <td>90 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>30</td>
-                                <td>Point 2</td>
-                                <td>92 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>31</td>
-                                <td>Point 2</td>
-                                <td>92 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>32</td>
-                                <td>Point 1</td>
-                                <td>98 <a title="Battery Replaced" style="color:black;"><i class="fa fa-battery-full" aria-hidden="true" style="margin-left: 5px;"></i></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-6">
+                <div style="margin-top:10px;">
+                    <span style="font-size: 3em;font-weight:bold;">Current Time:</span>
+                    <span style="font-size: 3em;font-weight:bold;" id="currentTime"><br><br>&nbsp;&nbsp;&nbsp;</span>
                 </div>
             </div>
-            <div class="col-md-8">
-                <span class="title">Current Shopping Cart Distribution</span>
-                <img src="img/jurongpoint_2.png" class="img-responsive" style="margin: 0px auto; height: 420px; position:absolute;">
-                <div class="locCircle" id="block1">16</div>
-                <div class="locCircle" id="block2">19</div>
-                <div class="locCircle" id="block3">23</div>
-                <div class="locCircle" id="block4">36</div>
-                <div class="locBlock" id="blockMis"><span>Missing: 5</span></div>
-                <div class="locBlock" id="blockUse"><span>In-Use: 25</span></div>
-                
+        </div>
+
+        <div class="col-md-12" style="margin-top:20px;">
+            <div class="col-md-2 card" style="height: 300px;">
+                <span class="title" style="float:none;">Cart Overview</span>
+                <br>
+                <span class="subtitle" style="float:none;">Total Trolleys  /Missing</span>
+                <hr>
+                <div class="card-contents">
+                    <span style="font-size: 4em;font-weight:bold;color:green">104 / 4</span>
+                    <span style="font-size: 3em;font-weight:bold;color:green">(96.2%)</span>
+                </div>
+            </div>
+
+            <div class="col-md-12" style="margin-top:20px;margin-bottom:50px;">
+                <div class="col-md-6 card" style="height:549px;">
+                    <span class="title" style="float:none;">Time Series of Alarms Triggered</span>
+                    <select type="text" id="time-series-select" class="form-control" style="width: 20% !important; font-size: 1.2em; height: 35px; float:right;">
+                        <option selected="selected">By Month</option>
+                        <option>By Day of Week</option>
+                    </select>
+                    <br>
+                    <span class="subtitle" style="float:none;">Analysis of Alarms triggered in time series</span>
+
+                    <hr>
+                    <div class="card" id="chartContainer" style="height:400px; width: 90%;">>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </body>
 <footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="js/main.js"></script>
 </footer>
 
