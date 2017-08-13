@@ -1,0 +1,304 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #eaeaea;
+}
+
+.card {
+    background-color: #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 15px;
+}
+
+.card-contents {
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    float: left;
+    font-weight: bold;
+}
+
+.subtitle {
+    color: #aeaeae;
+    font-size: 1.5em;
+    float: left;
+}
+
+.danger {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.warning {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.locBlock {
+    position: absolute;
+    height: 45px;
+    background-color: white;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.locCircle {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background-color: white;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+.locCircle:hover {
+    opacity: 1.0;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+#block1 {
+    left: 55px;
+    top: 150px;
+}
+
+#block2 {
+    left: 600px;
+    top: 120px;
+}
+
+#block3 {
+    left: 640px;
+    top: 420px;
+}
+
+#block4 {
+    left: 180px;
+    top: 440px;
+}
+
+#blockMis {
+    left: 600px;
+    top: 480px;
+    width: 166px;
+    opacity: 1.0;
+}
+
+#blockUse {
+    left: 480px;
+    top: 374px;
+    width: 166px;
+    opacity: 1.0;
+}
+
+.col-md-2 {
+    width: calc(16.66666667% - 20px);
+}
+
+.col-md-3 {
+    width: calc(25% - 20px);
+}
+
+.col-md-4 {
+    width: calc(33.33333333% - 20px);
+}
+
+.col-md-5 {
+    width: calc(41.66666667% - 20px);
+}
+
+.col-md-6 {
+    width: calc(50% - 20px);
+}
+
+.col-md-7 {
+    width: calc(58.33333333% - 20px);
+}
+
+.col-md-8 {
+    width: calc(66.66666667% - 20px);
+}
+
+.duty-img {
+    height: 45px;
+    padding-right: 10px;
+}
+
+.duty-table-closed {
+    height: 60px;
+    background-color: #808080;
+    color: #fff;
+}
+
+.duty-table-closed > td {
+    padding-top: 13px !important;
+}
+
+.duty-table-centered {
+    padding-top: 13px !important;
+}
+
+[data-notify="progressbar"] {
+	margin-bottom: 0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 5px;
+}
+
+/*
+D3 Styles
+*/
+
+
+/*For D3 Tips */
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+rect.bordered {
+    stroke: #E6E6E6;
+    stroke-width: 2px;
+}
+
+text.mono {
+    font-size: 9pt;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    fill: #000000;
+}
+
+text.axis-workweek {
+    fill: #000000;
+}
+
+text.axis-worktime {
+    fill: #000000;
+}
