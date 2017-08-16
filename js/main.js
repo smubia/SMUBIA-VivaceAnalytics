@@ -39,7 +39,6 @@ function expertisePopulate() {
         data: [
             {
                 type: "column",
-                showInLegend: true,
                 dataPoints: [
                     {
                         y: expertiseNewbie,
@@ -75,33 +74,109 @@ function yearPopulate() {
         backgroundColor: "transparent",
         data: [
             {
-                type: "doughnut",
-                indexLabel: "{label} #percent%",
+                type: "column",
+                indexLabel: "{y}",
                 dataPoints: [
                     {
-                        y: year2013,
-                        label: "2013"
-                    },
-                    {
-                        y: year2014,
-                        label: "2014"
+                        y: year2014 + year2013,
+                        label: "Senior"
                     },
                     {
                         y: year2015,
-                        label: "2015"
+                        label: "Junior"
                     },
                     {
                         y: year2016,
-                        label: "2016"
+                        label: "Sophomore"
                     },
                     {
                         y: year2017,
-                        label: "2017"
+                        label: "Freshman"
                     }
 			]
 		}
 		]
     });
+    chart.render();
+}
+
+function timePopulate() {
+    var chart = new CanvasJS.Chart("timeChart", {
+        backgroundColor: "transparent",
+        axisX: {
+            gridColor: "transparent",
+            tickColor: "transparent"
+        },
+        toolTip: {
+            shared: false
+        },
+        axisY: {
+            gridColor: "transparent",
+            tickColor: "transparent",
+            labelFontColor: "transparent",
+            lineColor: "transparent"
+        },
+        data: [
+            {
+                type: "spline",
+                fillOpacity: 0.7,
+                indexLabel: "{y}",
+                indexLabelFontFamily: "Source Sans Pro",
+                indexLabelFontColor: "#ffffff",
+                indexLabelFontWeight: "bold",
+                indexLabelFontSize: 40,
+                indexLabelPlacement: "outside",
+                lineThickness: 6,
+                markerType: "circle",
+                markerSize: 20,
+                markerBorderColor: "#33353e", //change color here
+                markerBorderThickness: 6,
+                color: "#ffffff",
+                dataPoints: [
+                    {
+                        label: "12pm",
+                        y: 1
+                    },
+                    {
+                        xlabel: "1pm",
+                        y: 3
+                    },
+                    {
+                        label: "2pm",
+                        y: 4
+                    },
+                    {
+                        label: "3pm",
+                        y: 6
+                    },
+                    {
+                        label: "4pm",
+                        y: 3
+                    },
+                    {
+                        label: "5pm",
+                        y: 4
+                    },
+                    {
+                        label: "6pm",
+                        y: 7
+                    }
+				]
+			}
+			],
+        legend: {
+            cursor: "pointer",
+            itemclick: function (e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+        }
+    });
+
     chart.render();
 }
 
@@ -125,6 +200,7 @@ function retrieveData() {
             schoolPopulate();
             yearPopulate();
             expertisePopulate();
+            timePopulate();
         }
     });
 }
