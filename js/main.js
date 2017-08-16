@@ -23,6 +23,15 @@ var expertiseIntermediate = 0;
 var expertiseAdvanced = 0;
 var expertiseExpert = 0;
 
+var vivace12 = 0;
+var vivace13 = 0;
+var vivace14 = 0;
+var vivace15 = 0;
+var vivace16 = 0;
+var vivace17 = 0;
+var vivace18 = 0;
+
+
 
 $(document).ready(function () {
     setInterval(function () {
@@ -34,64 +43,70 @@ $(document).ready(function () {
 })
 
 function expertisePopulate() {
-    var options = {
-        backgroundColor: "transparent",
-        data: [
-            {
-                type: "column",
-                dataPoints: [
-                    {
-                        y: expertiseNewbie,
-                        label: "Newbie"
-                },
-                    {
-                        y: expertiseBeginner,
-                        label: "Beginner"
-                },
-                    {
-                        y: expertiseIntermediate,
-                        label: "Intermediate"
-                },
-                    {
-                        y: expertiseAdvanced,
-                        label: "Advanced"
-                },
-                    {
-                        y: expertiseExpert,
-                        label: "Expert"
-                }
-                ]
-        }
-        ]
-    };
+    var experienced = expertiseIntermediate + expertiseAdvanced + expertiseExpert;
+    $("#experience-newbie").text(expertiseNewbie);
+    $("#experience-novice").text(expertiseBeginner);
+    $("#experience-experience").text(experienced);
+}
 
-    $("#expertChart").CanvasJSChart(options);
+function genderPopulate() {
+    var genderTotal = genderBoy + genderGirl;
+    $("#gender-female").text(genderGirl);
+    $("#gender-male").text(genderBoy);
+    $("#gender-female-percent").text("(" + (parseFloat(genderGirl / genderTotal) * 100).toString().substr(0, 4) + "%)");
+    $("#gender-male-percent").text("(" + (parseFloat(genderBoy / genderTotal) * 100).toString().substr(0, 4) + "%)");
 }
 
 function yearPopulate() {
 
     var chart = new CanvasJS.Chart("yearChart", {
         backgroundColor: "transparent",
+        axisX: {
+            gridColor: "transparent",
+            tickColor: "transparent",
+            lineColor: "#fff",
+            lineThickness: 2,
+            labelFontSize: 25,
+            labelFontColor: "#fff",
+            labelFontFamily: "Source Sans Pro"
+        },
+        axisY: {
+            gridColor: "transparent",
+            tickColor: "#fff",
+            labelFontColor: "#fff",
+            lineColor: "#fff",
+            lineThickness: 2,
+            labelFontSize: 25,
+            labelFontColor: "#fff",
+            labelFontFamily: "Source Sans Pro"
+        },
         data: [
             {
                 type: "column",
                 indexLabel: "{y}",
+                indexLabelFontFamily: "Bebas Neue",
+                indexLabelFontColor: "#33353e",
+                indexLabelFontWeight: "bold",
+                indexLabelFontSize: 60,
+                color: "#ffffff",
+                indexLabelPlacement: "inside",
+
                 dataPoints: [
                     {
-                        y: year2014 + year2013,
-                        label: "Senior"
-                    },
-                    {
-                        y: year2015,
-                        label: "Junior"
+                        y: year2017,
+                        label: "FRESHMAN"
                     },
                     {
                         y: year2016,
-                        label: "Sophomore"
+                        label: "SOPHOMORE"
                     },
                     {
-                        y: year2017,
-                        label: "Freshman"
+                        y: year2015,
+                        label: "JUNIOR"
+                    },
+                    {
+                        y: year2014 + year2013,
+                        label: "SENIOR"
                     }
 			]
 		}
@@ -100,12 +115,37 @@ function yearPopulate() {
     chart.render();
 }
 
+function schoolPopulate() {
+    schoolTotal = schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS + schoolSOL;
+    $("#soss-total").text(schoolSOSS);
+    $("#soss-percent").text("(" + (parseFloat(schoolSOSS / schoolTotal) * 100).toString().substr(0, 4) + "%)");
+
+    $("#soe-total").text(schoolSOE);
+    $("#soe-percent").text("(" + (parseFloat(schoolSOE / schoolTotal) * 100).toString().substr(0, 4) + "%)");
+
+    $("#soa-total").text(schoolSOA);
+    $("#soa-percent").text("(" + (parseFloat(schoolSOA / schoolTotal) * 100).toString().substr(0, 4) + "%)");
+
+    $("#sob-total").text(schoolSOB);
+    $("#sob-percent").text("(" + (parseFloat(schoolSOB / schoolTotal) * 100).toString().substr(0, 4) + "%)");
+
+    $("#sis-total").text(schoolSIS);
+    $("#sis-percent").text("(" + (parseFloat(schoolSIS / schoolTotal) * 100).toString().substr(0, 4) + "%)");
+
+    $("#school-total").text(schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS + schoolSOL);
+}
+
 function timePopulate() {
     var chart = new CanvasJS.Chart("timeChart", {
         backgroundColor: "transparent",
         axisX: {
             gridColor: "transparent",
-            tickColor: "transparent"
+            tickColor: "transparent",
+            lineColor: "#fff",
+            lineThickness: 2,
+            labelFontSize: 25,
+            labelFontColor: "#fff",
+            labelFontFamily: "Source Sans Pro"
         },
         toolTip: {
             shared: false
@@ -121,10 +161,10 @@ function timePopulate() {
                 type: "spline",
                 fillOpacity: 0.7,
                 indexLabel: "{y}",
-                indexLabelFontFamily: "Source Sans Pro",
+                indexLabelFontFamily: "Bebas Neue",
                 indexLabelFontColor: "#ffffff",
                 indexLabelFontWeight: "bold",
-                indexLabelFontSize: 40,
+                indexLabelFontSize: 60,
                 indexLabelPlacement: "outside",
                 lineThickness: 6,
                 markerType: "circle",
@@ -138,7 +178,7 @@ function timePopulate() {
                         y: 1
                     },
                     {
-                        xlabel: "1pm",
+                        label: "1pm",
                         y: 3
                     },
                     {
@@ -278,29 +318,8 @@ function schoolSwitch(email) {
     }
 }
 
-function schoolPopulate() {
-    $("#soss-total").text(schoolSOSS);
-    //$("#soss-percent").text(schoolSOSS);
-
-    $("#soe-total").text(schoolSOE);
-    //$("#soe-percent").text(schoolSOE);
-
-    $("#soa-total").text(schoolSOA);
-    //$("#soa-percent").text(schoolSOA);
-
-    $("#sob-total").text(schoolSOB);
-    //$("#sob-percent").text(schoolSOB);
-
-    $("#sis-total").text(schoolSIS);
-    //$("#sis-percent").text(schoolSIS);
-
-    $("#school-total").text(schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS);
-    //$("#school-percent").text(schoolSOSS);
-}
-
-function genderPopulate() {
-    $("#gender-female").text(genderGirl);
-    $("#gender-male").text(genderBoy);
+function timeSwitch (timeStamp) {
+    
 }
 
 function printAll() {
@@ -325,4 +344,12 @@ function printAll() {
     console.log(" expertiseIntermediate = " + expertiseIntermediate);
     console.log(" expertiseAdvanced = " + expertiseAdvanced);
     console.log(" expertiseExpert = " + expertiseExpert);
+
+    console.log(" vivace12 = " + vivace12);
+    console.log(" vivace13 = " + vivace13);
+    console.log(" vivace14 = " + vivace14);
+    console.log(" vivace15 = " + vivace15);
+    console.log(" vivace16 = " + vivace16);
+    console.log(" vivace17 = " + vivace17);
+    console.log(" vivace18 = " + vivace18);
 }

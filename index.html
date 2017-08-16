@@ -18,22 +18,25 @@
 </head>
 
 <body>
-    <div class="container" style="margin-top:25px;width: 85vw;">
+    <div class="container" style="margin-top:15px;width: 85vw;">
         <div class="col-md-12" style="text-align:center;">
-            <span class="main-title" style="font-size:3em">SMU BUSINESS INTELLIGENCE AND ANALYTICS VIVACE LIVE SIGN-UPS ANALYTICS</span>
-             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNKzIJHonHSr4d_BDbdqUp5nXL0FwWr8OcuZAQ11Zm6Ng9Aw/viewform" class="btn btn-default" role="button">Survey</a>
-             <a href="https://docs.google.com/spreadsheets/d/1i4beAF9GRqTstgZXAb-FMeqmy1d7ssybaHDeTGlMzFw/edit#gid=466155957" class="btn btn-primary" role="button">Responses</a>
+            <span class="main-title" style="font-size:3.5em;">SMU BUSINESS INTELLIGENCE AND ANALYTICS VIVACE LIVE SIGN-UPS ANALYTICS</span>
+            <!--
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdNKzIJHonHSr4d_BDbdqUp5nXL0FwWr8OcuZAQ11Zm6Ng9Aw/viewform" class="btn btn-default" role="button">Survey</a>
+            <a href="https://docs.google.com/spreadsheets/d/1i4beAF9GRqTstgZXAb-FMeqmy1d7ssybaHDeTGlMzFw/edit#gid=466155957" class="btn btn-primary" role="button">Responses</a>
+-->
         </div>
 
-        <div class="col-md-12" style="margin-top:30px;">
+        <div class="col-md-12" style="margin-top:10px;">
             <div class="col-md-2">
                 <div class="card-contents sis-color2">
                     <div class="card-title sis-color">
                         <span class="title">INFO SYS</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="sis-total">0</div>
-                        <div class="card-text" id="sis-percent"></div>
+                        <span class="card-text" id="sis-total">-</span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span class="card-text2" id="sis-percent"></span>
                     </div>
                 </div>
             </div>
@@ -44,8 +47,9 @@
                         <span class="title">ACCOUNTANCY</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="soa-total">0</div>
-                        <div class="card-text" id="soa-percent"></div>
+                        <span class="card-text" id="soa-total">-</span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span class="card-text2" id="soa-percent"></span>
                     </div>
                 </div>
             </div>
@@ -56,8 +60,9 @@
                         <span class="title">BUSINESS</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="sob-total">0</div>
-                        <div class="card-text" id="sob-percent"></div>
+                        <span class="card-text" id="sob-total">-</span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span class="card-text2" id="sob-percent"></span>
                     </div>
                 </div>
             </div>
@@ -68,8 +73,9 @@
                         <span class="title">ECONOMICS</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="soe-total">0</div>
-                        <div class="card-text" id="soe-percent"></div>
+                        <span class="card-text" id="soe-total">-</span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span class="card-text2" id="soe-percent"></span>
                     </div>
                 </div>
             </div>
@@ -80,8 +86,9 @@
                         <span class="title">SOCIAL SCIENCE</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="soss-total">0</div>
-                        <div class="card-text" id="soss-percent"></div>
+                        <span class="card-text" id="soss-total">-</span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span class="card-text2" id="soss-percent"></span>
                     </div>
                 </div>
             </div>
@@ -92,59 +99,92 @@
                         <span class="title">Total SIGNUPS</span>
                     </div>
                     <div class="card-body">
-                        <div class="card-text" id="school-total">0</div>
-                        <div class="card-text" id="school-percent"></div>
+                        <span class="card-text" id="school-total">-</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12" style="margin-top:30px;height: 40vh;">
-            <div class="col-md-6" style="height: 100%;">
-                <div class="panel-contents">
-                    <div class="card-title">
-                        <span class="title">Gender Breakdown</span>
-                    </div>
+        <div class="col-md-12" style="margin-top:15px;height: 28vh;">
+            <div class="col-md-4 panel-contents" style="height: 100%;">
+                <div class="card-title">
+                    <span class="panel-title">Gender Breakdown</span>
+                </div>
 
-                    <div class="card-body col-md-12">
-                        <div class="col-md-4 col-md-push-2" style="text-align:center;">
-                            <img src="img/male.png" class="img-responsive" />
-                            <span style="color:white;font-size:3em" id="gender-male">5</span>
+                <div class="card-body col-md-12">
+                    <div class="col-md-6" style="text-align:left;">
+                        <img src="img/male.png" class="img-responsive gender-img" />
+                        <div class="gender-values" style="text-align:right;margin-right: 44%;">
+                            <span class="gender-txt" id="gender-male">-</span><br/>
+                            <span class="gender-txt2" id="gender-male-percent"></span>
                         </div>
-                        <div class="col-md-4 col-md-push-2" style="text-align:center;">
-                            <img src="img/female.png" class="img-responsive" />
-                            <span style="color:white;font-size:3em" id="gender-female">0</span>
+                    </div>
+                    <div class="col-md-6" style="text-align:right;">
+                        <img src="img/female.png" class="img-responsive gender-img" />
+                        <div class="gender-values" style="text-align:left;margin-left: 50%;">
+                            <span class="gender-txt" id="gender-female">-</span><br/>
+                            <span class="gender-txt2" id="gender-female-percent"></span>
                         </div>
+                    </div>
+                    <div style="position: absolute;left: 48%;top: 75%;">
+                        <span class="gender-txt2">vs.</span>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6" style="height: 100%;">
-                <div class="panel-contents">
-                    <span class="title">Expertise of Signups</span>
+            <div class="col-md-3 experience-card">
+                <div class="card-contents" style="background-color:#e67e22">
+                    <div class="exp-title" style="background-color:#d35400">
+                        <span class="title">Newbie Experience</span>
+                    </div>
                     <div class="card-body">
-                        <div id="expertChart" style="height: 100%; width: 100%;"></div>
+                        <img src="img/noob.png" class="img-responsive" style="height: 150px;margin: 0px auto;" />
+                        <span class="experience-text" id="experience-newbie">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 experience-card">
+                <div class="card-contents" style="background-color:#dc789d">
+                    <div class="exp-title" style="background-color:#d1507f">
+                        <span class="title">Novice Experience</span>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/novice1.png" class="img-responsive" style="height: 150px;margin: 0px auto;" />
+                        <span class="experience-text" id="experience-novice">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 experience-card">
+                <div class="card-contents" style="background-color:#9b59b6">
+                    <div class="exp-title" style="background-color:#8e44ad">
+                        <span class="title">Experienced</span>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/exp.png" class="img-responsive" style="height: 150px;margin: 0px auto;" />
+                        <span class="experience-text" id="experience-experience">-</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-12" style="margin-top:30px;height: 17vh; margin-bottom: 100px;">
-            <div class="col-md-6" style="height: 100%;">
-                <div class="panel-contents">
-                    <span class="title">Year of Signups</span>
-                    <div class="card-body">
-                        <div id="yearChart" style="height: 100%; width: 100%;"></div>
-                    </div>
+        <div class="col-md-12" style="margin-top:30px;height: 42vh;">
+            <div class="col-md-6 panel-contents" style="height: 100%;width:48%;">
+                <div class="card-title">
+                    <span class="panel-title">Year of Signups</span>
+                </div>
+                <div class="card-body">
+                    <div id="yearChart" style="width: 100%;"></div>
                 </div>
             </div>
 
-            <div class="col-md-6" style="height: 100%;">
-                <div class="panel-contents">
-                    <span class="title">Registration Over Time</span>
-                    <div class="card-body">
-                        <div id="timeChart" style="height: 100%; width: 100%;"></div>
-                    </div>
+            <div class="col-md-6 panel-contents" style="height: 100%;width:48%;">
+                <div class="card-title">
+                    <span class="panel-title">Registration over Time</span>
+                </div>
+                <div class="card-body">
+                    <div id="timeChart" style=" width:100%;"></div>
                 </div>
             </div>
         </div>
