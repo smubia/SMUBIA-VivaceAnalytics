@@ -3,6 +3,7 @@
 //**********************************
 var genderBoy = 0;
 var genderGirl = 0;
+var genderTotal = 0;
 
 var schoolSIS = 0;
 var schoolSOB = 0;
@@ -31,16 +32,29 @@ var vivace16 = 0;
 var vivace17 = 0;
 var vivace18 = 0;
 
-
+var newTotalData = 0;
 
 $(document).ready(function () {
-    setInterval(function () {
-        var today = new Date();
-        $("#currentTime").text(today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds());
-    }, 1000);
-
     retrieveData();
+
+    setInterval(function () {
+        //console.log("interval~" + genderTotal + "vs." + newTotalData)
+        if (checkData(genderTotal, newTotalData)) {
+            retrieveData();
+        }
+    }, 10000);
+
+
 })
+
+function checkData(oldAmt, newAmt) {
+    //console.log("old=" + oldAmt + " new=" + newAmt);
+    if (oldAmt != newAmt) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function expertisePopulate() {
     var experienced = expertiseIntermediate + expertiseAdvanced + expertiseExpert;
@@ -50,7 +64,7 @@ function expertisePopulate() {
 }
 
 function genderPopulate() {
-    var genderTotal = genderBoy + genderGirl;
+    genderTotal = genderBoy + genderGirl;
     $("#gender-female").text(genderGirl);
     $("#gender-male").text(genderBoy);
     $("#gender-female-percent").text("(" + (parseFloat(genderGirl / genderTotal) * 100).toString().substr(0, 4) + "%)");
@@ -58,7 +72,6 @@ function genderPopulate() {
 }
 
 function yearPopulate() {
-
     var chart = new CanvasJS.Chart("yearChart", {
         backgroundColor: "transparent",
         axisX: {
@@ -175,31 +188,31 @@ function timePopulate() {
                 dataPoints: [
                     {
                         label: "12pm",
-                        y: 1
+                        y: vivace12
                     },
                     {
                         label: "1pm",
-                        y: 3
+                        y: vivace13
                     },
                     {
                         label: "2pm",
-                        y: 4
+                        y: vivace14
                     },
                     {
                         label: "3pm",
-                        y: 6
+                        y: vivace15
                     },
                     {
                         label: "4pm",
-                        y: 3
+                        y: vivace16
                     },
                     {
                         label: "5pm",
-                        y: 4
+                        y: vivace17
                     },
                     {
                         label: "6pm",
-                        y: 7
+                        y: vivace18
                     }
 				]
 			}
@@ -223,19 +236,22 @@ function timePopulate() {
 
 
 function retrieveData() {
+    //This is for emergency use only. (make sure to remove the commented line below as well).
+    //setInterval(function () {
     $.ajax({
         url: 'https://script.googleusercontent.com/macros/echo?user_content_key=x72DBi7PnP-krZmTlckfJ41U0-Va694QrJl83V61ltzpLJTjxFPiNnm-PbXP9E5jSFL1EiEG0ouTuGpHG1LdzFqsWYzNv3w8OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa1ZsYSbt7G4nMhEEDL32U4DxjO7V7yvmJPXJTBuCiTGh3rUPjpYM_V0PJJG7TIaKpzjnW7fDIdJvUc6S6oej-Uzzg-zYw7TrH--epZcnP5y2K8CuVI6Yu3Y5keLGnWsT4sgJ3ttE15malo-KUAPQVXM&lib=MbpKbbfePtAVndrs259dhPT7ROjQYJ8yx',
         success: function (responseText) {
             var data = responseText.Response;
+            resetData();
             for (var i = 0; i < data.length; i++) {
+                newTotalData = data.length;
                 genderSwitch(data[i].Gender);
                 yearSwitch(data[i].Email);
                 schoolSwitch(data[i].Email);
                 expertSwitch(data[i].Expertise);
-                //                timeSwitch(new Date(data[i].Timestamp).getHours());
+                timeSwitch(new Date(data[i].Timestamp));
 
             }
-            printAll();
             genderPopulate();
             schoolPopulate();
             yearPopulate();
@@ -243,6 +259,7 @@ function retrieveData() {
             timePopulate();
         }
     });
+    //}, 30000);
 }
 
 function genderSwitch(gender) {
@@ -318,8 +335,32 @@ function schoolSwitch(email) {
     }
 }
 
-function timeSwitch (timeStamp) {
-    
+function timeSwitch(datetime) {
+    if (datetime.getDate() == 18) {
+        if (datetime.getHours() <= 12) {
+            vivace12++;
+        } else if (datetime.getHours() >= 18) {
+            vivace18++;
+        } else {
+            switch (datetime.getHours()) {
+                case 13:
+                    vivace13++;
+                    break;
+                case 14:
+                    vivace14++;
+                    break;
+                case 15:
+                    vivace15++;
+                    break;
+                case 16:
+                    vivace16++;
+                    break;
+                case 17:
+                    vivace17++;
+                    break;
+            }
+        }
+    }
 }
 
 function printAll() {
@@ -352,4 +393,39 @@ function printAll() {
     console.log(" vivace16 = " + vivace16);
     console.log(" vivace17 = " + vivace17);
     console.log(" vivace18 = " + vivace18);
+}
+
+function resetData() {
+    genderBoy = 0;
+    genderGirl = 0;
+    genderTotal = 0;
+
+    schoolSIS = 0;
+    schoolSOB = 0;
+    schoolSOA = 0;
+    schoolSOL = 0;
+    schoolSOE = 0;
+    schoolSOSS = 0;
+
+    year2013 = 0;
+    year2014 = 0;
+    year2015 = 0;
+    year2016 = 0;
+    year2017 = 0;
+
+    expertiseNewbie = 0;
+    expertiseBeginner = 0;
+    expertiseIntermediate = 0;
+    expertiseAdvanced = 0;
+    expertiseExpert = 0;
+
+    vivace12 = 0;
+    vivace13 = 0;
+    vivace14 = 0;
+    vivace15 = 0;
+    vivace16 = 0;
+    vivace17 = 0;
+    vivace18 = 0;
+
+    newTotalData = 0;
 }
