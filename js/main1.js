@@ -35,27 +35,152 @@ var vivace18 = 0;
 var newTotalData = 0;
 
 $(document).ready(function () {
+    //Upon start, the script would retrieve data from the google sheets
     retrieveData();
 
+    //This repeated function is to check if the data has changed. If the data has changed, then you need to retrieve the data again and redraw the whole visualisation.
     setInterval(function () {
-        //console.log("interval~" + genderTotal + "vs." + newTotalData)
-        if (checkData(genderTotal, newTotalData)) {
+        if (genderTotal != newTotalData) {
             retrieveData();
         }
     }, 10000);
-
-
 })
 
-function checkData(oldAmt, newAmt) {
-    //console.log("old=" + oldAmt + " new=" + newAmt);
-    if (oldAmt != newAmt) {
-        return false;
+//This function is uses Google Sheets API to retrieve the information from the google sheets. 
+//It takes in timestamp, email, expertise and gender.
+function retrieveData() {
+    $.ajax({
+        url: 'https://script.googleusercontent.com/macros/echo?user_content_key=x72DBi7PnP-krZmTlckfJ41U0-Va694QrJl83V61ltzpLJTjxFPiNnm-PbXP9E5jSFL1EiEG0ouTuGpHG1LdzFqsWYzNv3w8OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa1ZsYSbt7G4nMhEEDL32U4DxjO7V7yvmJPXJTBuCiTGh3rUPjpYM_V0PJJG7TIaKpzjnW7fDIdJvUc6S6oej-Uzzg-zYw7TrH--epZcnP5y2K8CuVI6Yu3Y5keLGnWsT4sgJ3ttE15malo-KUAPQVXM&lib=MbpKbbfePtAVndrs259dhPT7ROjQYJ8yx',
+        success: function (responseText) {
+            var data = responseText.Response;
+            resetData();
+            for (var i = 0; i < data.length; i++) {
+                //here, the person would be categoried into the appropriate places
+                newTotalData = data.length;
+                genderSwitch(data[i].Gender);
+                yearSwitch(data[i].Email);
+                schoolSwitch(data[i].Email);
+                expertSwitch(data[i].Expertise);
+                timeSwitch(new Date(data[i].Timestamp));
+
+            }
+            //after all the variables are added accordingly, this functions would populate the various fields of the data visualisation.
+            genderPopulate();
+            schoolPopulate();
+            yearPopulate();
+            expertisePopulate();
+            timePopulate();
+        }
+    });
+}
+
+//increment the gender variable accordingly.
+function genderSwitch(gender) {
+    if (gender == 'Female') {
+        genderGirl++;
     } else {
-        return true;
+        genderBoy++;
     }
 }
 
+//increment the year variable accordingly to the email year.
+function yearSwitch(email) {
+    //example: minghao.ong.2014@sis.smu.edu.sg
+    switch (email.substr(email.indexOf("@") - 4, 4)) {
+        case '2013':
+            year2013++;
+            break;
+        case '2014':
+            year2014++;
+            break;
+        case '2015':
+            year2015++;
+            break;
+        case '2016':
+            year2016++;
+            break;
+        case '2017':
+            year2017++;
+            break;
+    }
+}
+
+//increment the expertise variable accordingly.
+function expertSwitch(expertise) {
+    //"Newbie",Beginner,Intermediate,Advanced,Expert
+    switch (expertise) {
+        case 'Newbie':
+            expertiseNewbie++;
+            break;
+        case 'Beginner':
+            expertiseBeginner++;
+            break;
+        case 'Intermediate':
+            expertiseIntermediate++;
+            break;
+        case 'Advanced':
+            expertiseAdvanced++;
+            break;
+        case 'Expert':
+            expertiseExpert++;
+            break;
+    }
+}
+
+//increment the school variable accordingly to the email school.
+function schoolSwitch(email) {
+    //example: minghao.ong.2014@sis.smu.edu.sg
+    switch (email.substr(email.indexOf("@") + 1, 3)) {
+        case 'sis':
+            schoolSIS++;
+            break;
+        case 'bus':
+            schoolSOB++;
+            break;
+        case 'acc':
+            schoolSOA++;
+            break;
+        case 'eco':
+            schoolSOE++;
+            break;
+        case 'soc':
+            schoolSOSS++;
+            break;
+        default:
+            schoolSOL++;
+    }
+}
+
+//increment the time variable accordingly to vivace start and end time.
+function timeSwitch(datetime) {
+    if (datetime.getDate() == 18) {
+        if (datetime.getHours() <= 12) {
+            vivace12++;
+        } else if (datetime.getHours() >= 18) {
+            vivace18++;
+        } else {
+            switch (datetime.getHours()) {
+                case 13:
+                    vivace13++;
+                    break;
+                case 14:
+                    vivace14++;
+                    break;
+                case 15:
+                    vivace15++;
+                    break;
+                case 16:
+                    vivace16++;
+                    break;
+                case 17:
+                    vivace17++;
+                    break;
+            }
+        }
+    }
+}
+
+//This function populates the expertise visualisation
 function expertisePopulate() {
     var experienced = expertiseIntermediate + expertiseAdvanced + expertiseExpert;
     $("#experience-newbie").text(expertiseNewbie);
@@ -63,6 +188,7 @@ function expertisePopulate() {
     $("#experience-experience").text(experienced);
 }
 
+//This function populates the gender visualisation
 function genderPopulate() {
     genderTotal = genderBoy + genderGirl;
     $("#gender-female").text(genderGirl);
@@ -71,6 +197,7 @@ function genderPopulate() {
     $("#gender-male-percent").text("(" + (parseFloat(genderBoy / genderTotal) * 100).toString().substr(0, 4) + "%)");
 }
 
+//This function populates the year visualisation
 function yearPopulate() {
     var chart = new CanvasJS.Chart("yearChart", {
         backgroundColor: "transparent",
@@ -128,6 +255,7 @@ function yearPopulate() {
     chart.render();
 }
 
+//This function populates the school visualisation
 function schoolPopulate() {
     schoolTotal = schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS + schoolSOL;
     $("#soss-total").text(schoolSOSS);
@@ -148,6 +276,7 @@ function schoolPopulate() {
     $("#school-total").text(schoolSOSS + schoolSOE + schoolSOA + schoolSOB + schoolSIS + schoolSOL);
 }
 
+//This function populates the time visualisation
 function timePopulate() {
     var chart = new CanvasJS.Chart("timeChart", {
         backgroundColor: "transparent",
@@ -233,136 +362,7 @@ function timePopulate() {
     chart.render();
 }
 
-
-
-function retrieveData() {
-    //This is for emergency use only. (make sure to remove the commented line below as well).
-    //setInterval(function () {
-    $.ajax({
-        url: 'https://script.googleusercontent.com/macros/echo?user_content_key=x72DBi7PnP-krZmTlckfJ41U0-Va694QrJl83V61ltzpLJTjxFPiNnm-PbXP9E5jSFL1EiEG0ouTuGpHG1LdzFqsWYzNv3w8OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa1ZsYSbt7G4nMhEEDL32U4DxjO7V7yvmJPXJTBuCiTGh3rUPjpYM_V0PJJG7TIaKpzjnW7fDIdJvUc6S6oej-Uzzg-zYw7TrH--epZcnP5y2K8CuVI6Yu3Y5keLGnWsT4sgJ3ttE15malo-KUAPQVXM&lib=MbpKbbfePtAVndrs259dhPT7ROjQYJ8yx',
-        success: function (responseText) {
-            var data = responseText.Response;
-            resetData();
-            for (var i = 0; i < data.length; i++) {
-                newTotalData = data.length;
-                genderSwitch(data[i].Gender);
-                yearSwitch(data[i].Email);
-                schoolSwitch(data[i].Email);
-                expertSwitch(data[i].Expertise);
-                timeSwitch(new Date(data[i].Timestamp));
-
-            }
-            genderPopulate();
-            schoolPopulate();
-            yearPopulate();
-            expertisePopulate();
-            timePopulate();
-        }
-    });
-    //}, 30000);
-}
-
-function genderSwitch(gender) {
-    if (gender == 'Female') {
-        genderGirl++;
-    } else {
-        genderBoy++;
-    }
-}
-
-function yearSwitch(email) {
-    //example: minghao.ong.2014@sis.smu.edu.sg
-    switch (email.substr(email.indexOf("@") - 4, 4)) {
-        case '2013':
-            year2013++;
-            break;
-        case '2014':
-            year2014++;
-            break;
-        case '2015':
-            year2015++;
-            break;
-        case '2016':
-            year2016++;
-            break;
-        case '2017':
-            year2017++;
-            break;
-    }
-}
-
-function expertSwitch(expertise) {
-    //"Newbie",Beginner,Intermediate,Advanced,Expert
-    switch (expertise) {
-        case 'Newbie':
-            expertiseNewbie++;
-            break;
-        case 'Beginner':
-            expertiseBeginner++;
-            break;
-        case 'Intermediate':
-            expertiseIntermediate++;
-            break;
-        case 'Advanced':
-            expertiseAdvanced++;
-            break;
-        case 'Expert':
-            expertiseExpert++;
-            break;
-    }
-}
-
-function schoolSwitch(email) {
-    //example: minghao.ong.2014@sis.smu.edu.sg
-    switch (email.substr(email.indexOf("@") + 1, 3)) {
-        case 'sis':
-            schoolSIS++;
-            break;
-        case 'bus':
-            schoolSOB++;
-            break;
-        case 'acc':
-            schoolSOA++;
-            break;
-        case 'eco':
-            schoolSOE++;
-            break;
-        case 'soc':
-            schoolSOSS++;
-            break;
-        default:
-            schoolSOL++;
-    }
-}
-
-function timeSwitch(datetime) {
-    if (datetime.getDate() == 18) {
-        if (datetime.getHours() <= 12) {
-            vivace12++;
-        } else if (datetime.getHours() >= 18) {
-            vivace18++;
-        } else {
-            switch (datetime.getHours()) {
-                case 13:
-                    vivace13++;
-                    break;
-                case 14:
-                    vivace14++;
-                    break;
-                case 15:
-                    vivace15++;
-                    break;
-                case 16:
-                    vivace16++;
-                    break;
-                case 17:
-                    vivace17++;
-                    break;
-            }
-        }
-    }
-}
-
+//breadcrumb to check all the variables.
 function printAll() {
     console.log(" genderBoy = " + genderBoy);
     console.log(" genderGirl = " + genderGirl);
@@ -395,6 +395,7 @@ function printAll() {
     console.log(" vivace18 = " + vivace18);
 }
 
+//reset all data
 function resetData() {
     genderBoy = 0;
     genderGirl = 0;
