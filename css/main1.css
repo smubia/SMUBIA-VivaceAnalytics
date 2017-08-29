@@ -17,6 +17,8 @@ html {
 body {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #33353e;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .main-title {
@@ -24,6 +26,11 @@ body {
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
+}
+
+.container {
+    margin-top: 15px;
+    width: 85vw;
 }
 
 .sis-color {
@@ -149,6 +156,12 @@ Card
     font-family: 'Bebas Neue', serif;
 }
 
+.gender-txt3 {
+    color: white;
+    font-size: 3em;
+    font-family: 'Bebas Neue', serif;
+}
+
 .gender-values {
     line-height: 3em;
     margin-top: -60%;
@@ -156,15 +169,19 @@ Card
     margin-right: 10%;
 }
 
-
-.experience-img {
-    height: 215px;
+#gender-panel {
+    height: 28vh;
 }
 
 .experience-card {
     width: 21.5%;
     padding: 15px;
     height: 110%;
+}
+
+.experience-img {
+    height: 150px;
+    margin: 0px auto;
 }
 
 .experience-text {
@@ -179,3 +196,178 @@ Card
     padding: 15px;
     text-align: center;
 }
+
+#year-panel {
+    height: 100%;
+    width: 47%;
+}
+
+#reg-panel {
+    height: 100%;
+    width: 47%;
+}
+
+#canvas-panel {
+    height: 42vh;
+}
+
+@media only screen and (max-width: 450px) {
+    body {
+        overflow: auto !important;
+    }
+    .card-contents {
+        margin-bottom: 15px !important;
+    }
+    .container {
+        width: 100vw !important;
+    }
+    #gender-panel {
+        height: 100%;
+    }
+    .gender-txt3 {
+        display: none;
+    }
+    .panel-contents {
+        padding-bottom: 50px !important;
+    }
+    .experience-card {
+        width: 100%;
+    }
+    .year-panel {
+        width: 100% !important;
+    }
+    #reg-panel>.card-title>span {
+        font-size: 1.5em !important;
+    }
+    #canvas-panel {
+        height: 67vh !important;
+        margin-top: 0px !important;
+    }
+    #year-panel {
+        width: auto !important;
+    }
+    #reg-panel {
+        width: auto !important;
+    }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 768px) {
+    body {
+        overflow: auto !important;
+    }
+    .card-contents {
+        margin-bottom: 15px !important;
+    }
+    .container {
+        width: 100vw !important;
+    }
+    #gender-panel {
+        height: 100%;
+    }
+    .gender-txt3 {
+        display: none;
+    }
+    .panel-contents {
+        padding-bottom: 50px !important;
+    }
+    .experience-card {
+        width: 100%;
+    }
+    .year-panel {
+        width: 100% !important;
+    }
+    #reg-panel>.card-title>span {
+        font-size: 1.5em !important;
+    }
+    #canvas-panel {
+        height: 48vh !important;
+        margin-top: 0px !important;
+    }
+    #gender-panel>.panel-contents {
+        height: 38vh !important;
+    }
+    #year-panel {
+        width: auto !important;
+    }
+    #reg-panel {
+        width: auto !important;
+    }
+    #gender-div {
+        width: 50% !important;
+        float: left;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    body {
+        overflow: auto !important;
+    }
+    .title {
+        font-size: 1.2em !important;
+    }
+    .card-contents {
+        margin-bottom: 15px !important;
+    }
+    .card-text2 {
+        font-size: 2em !important;
+    }
+    .container {
+        width: 100vw !important;
+    }
+    .gender-txt3 {
+        display: none;
+    }
+    .gender-txt {
+        font-size: 4em !important;
+    }
+    .gender-txt2 {
+        font-size: 2em !important;
+    }
+    #gender-div {
+        padding: 0px !important;
+    }
+    .panel-title {
+        font-size: 2em !important;
+    }
+    .experience-card {
+        width: 21%;
+    }
+    #gender-div {
+        width: 50% !important;
+    }
+    #gender-panel {
+        height: 17vh !important;
+    }
+    .experience-img {
+        height: 70px;
+    }
+    .panel-contents {
+        padding-bottom: 50px !important;
+    }
+    #year-panel,
+    #reg-panel {
+        width: 46.5% !important;
+    }
+    #reg-panel>.card-title>span {
+        font-size: 1.5em !important;
+    }
+    #canvas-panel {
+        height: 36vh !important;
+        margin-top: 15px !important;
+    }
+}
+
+
+@media screen and (min-width: 1025px) and (max-width: 1366px)  {
+    .experience-img {
+        height: 100px !important;
+    }
+    #year-panel {
+        width: 46% !important;
+    }
+    #reg-panel {
+        width: 46% !important;
+    }
+}
+
+
