@@ -40,6 +40,7 @@ $(document).ready(function () {
 
     //This repeated function is to check if the data has changed. If the data has changed, then you need to retrieve the data again and redraw the whole visualisation.
     setInterval(function () {
+        console.log("refresh")
         if (genderTotal != newTotalData) {
             retrieveData();
         }
@@ -50,8 +51,9 @@ $(document).ready(function () {
 //It takes in timestamp, email, expertise and gender.
 function retrieveData() {
     $.ajax({
-        url: 'https://script.googleusercontent.com/macros/echo?user_content_key=x72DBi7PnP-krZmTlckfJ41U0-Va694QrJl83V61ltzpLJTjxFPiNnm-PbXP9E5jSFL1EiEG0ouTuGpHG1LdzFqsWYzNv3w8OJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa1ZsYSbt7G4nMhEEDL32U4DxjO7V7yvmJPXJTBuCiTGh3rUPjpYM_V0PJJG7TIaKpzjnW7fDIdJvUc6S6oej-Uzzg-zYw7TrH--epZcnP5y2K8CuVI6Yu3Y5keLGnWsT4sgJ3ttE15malo-KUAPQVXM&lib=MbpKbbfePtAVndrs259dhPT7ROjQYJ8yx',
+        url: 'https://script.googleusercontent.com/macros/echo?user_content_key=HxT-DbOgAx-G2CZDsP85M_UdCKj-7UJzndsGZBJ9a0v_8dqJaclSY-ZfO90gJbDMV2yZYTwHlrqWdKSSsJhGVSp7MD3Mg28EOJmA1Yb3SEsKFZqtv3DaNYcMrmhZHmUMWojr9NvTBuBLhyHCd5hHa1ZsYSbt7G4nMhEEDL32U4DxjO7V7yvmJPXJTBuCiTGh3rUPjpYM_V0PJJG7TIaKpzjnW7fDIdJvUc6S6oej-Uzzg-zYw7TrH--epZcnP5y2K8CuVI6Yu3Y5keLGnWsT4sgJ3ttE15malo-KUAPQVXM&lib=MbpKbbfePtAVndrs259dhPT7ROjQYJ8yx',
         success: function (responseText) {
+            console.log(responseText)
             var data = responseText.Response;
             resetData();
             for (var i = 0; i < data.length; i++) {
@@ -61,8 +63,7 @@ function retrieveData() {
                 yearSwitch(data[i].Email);
                 schoolSwitch(data[i].Email);
                 expertSwitch(data[i].Expertise);
-                timeSwitch(new Date(data[i].Timestamp));
-
+                timeSwitch(new Date((data[i].Timestamp - 25567.35-2)*86400*1000));
             }
             //after all the variables are added accordingly, this functions would populate the various fields of the data visualisation.
             genderPopulate();
