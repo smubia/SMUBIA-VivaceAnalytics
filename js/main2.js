@@ -47,7 +47,7 @@ $(document).ready(function () {
     }, 10000);
 })
 
-//This function is uses Google Sheets API to retrieve the information from the google sheets. 
+//This function is uses Google Sheets API to retrieve the information from the google sheets.
 //It takes in timestamp, email, expertise and gender.
 function retrieveData() {
     $.ajax({
@@ -62,7 +62,7 @@ function retrieveData() {
                 genderSwitch(data[i].Gender);
                 yearSwitch(data[i]["School_Email_(Please_include_your_school)"]);
                 schoolSwitch(data[i]["School_Email_(Please_include_your_school)"]);
-                expertSwitch(data[i].Expertise);
+                expertSwitch(data[i]["What_is_your_experience_with_Business_Intelligence_and_Data_Analytics?_:"]);
                 timeSwitch(new Date((data[i].Timestamp - 25567.35-2)*86400*1000));
             }
             //after all the variables are added accordingly, this functions would populate the various fields of the data visualisation.
