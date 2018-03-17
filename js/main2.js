@@ -110,19 +110,19 @@ function yearSwitch(email) {
 function expertSwitch(expertise) {
     //"Newbie",Beginner,Intermediate,Advanced,Expert
     switch (expertise) {
-        case 'Newbie':
+        case "Newbie":
             expertiseNewbie++;
             break;
-        case 'Beginner':
+        case "Beginner":
             expertiseBeginner++;
             break;
-        case 'Intermediate':
+        case "Intermediate":
             expertiseIntermediate++;
             break;
-        case 'Advanced':
+        case "Advanced":
             expertiseAdvanced++;
             break;
-        case 'Expert':
+        case "Expert":
             expertiseExpert++;
             break;
     }
