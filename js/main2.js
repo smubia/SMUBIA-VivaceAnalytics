@@ -60,8 +60,8 @@ function retrieveData() {
                 //here, the person would be categoried into the appropriate places
                 newTotalData = data.length;
                 genderSwitch(data[i].Gender);
-                yearSwitch(data[i].Email);
-                schoolSwitch(data[i].Email);
+                yearSwitch(data[i]["School_Email_(Please_include_your_school)"]);
+                schoolSwitch(data[i]["School_Email_(Please_include_your_school)"]);
                 expertSwitch(data[i].Expertise);
                 timeSwitch(new Date((data[i].Timestamp - 25567.35-2)*86400*1000));
             }
